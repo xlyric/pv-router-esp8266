@@ -1,0 +1,1 @@
+{"IDX":110,"IDXdimmer":60,"delta":71,"deltaneg":-15,"cosphi":26,"readtime":555,"cycle":72,"sending":false,"autonome":true,"dimmer":"192.168.1.200","dimmerlocal":false,"facteur":0.87,"fuse":55,"mqtt":false,"mqttserver":"192.168.1.200","tmax":65,"resistance":1100,"Publish":"domoticz/in"}
