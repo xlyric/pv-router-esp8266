@@ -2,9 +2,17 @@
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
-I create this Pv router for separate power part to I created this pv router to separate the power part of the analysis part. 
-I wanted to be able to trace the information to domoticz and leave him the processing of information 
-to redispatch the surplus power to different digital dimmer.
+I try to create the cheapest pv router, with a ESP8266 ( or ESP32 ) and only some resistances and cheap components 
+it use an oled screen and an SCT013 clamp. 
+the power supply is and old 12v AC with electrical coil, and you must open it to separate 12 DC  and AC voltage 
+the 12DC is used to make the sync with the network tension AC , the led is used as a 1 bit numeric converter ( ON / OFF ) 
+
+the web interface is used to configure and have a visual to the router 
+main informations are sent to mqqt server for login and used by domotics or other domotic server. 
+
+if there is injection from PV production to network, the pv router send command to external numeric dimmer for command an extra use ( heat boiler , water tank ... ) 
+https://github.com/xlyric/PV-discharge-Dimmer-AC-Dimmer-KIT-Robotdyn
+
 
 <img src="https://nsa40.casimages.com/img/2019/12/23/191223091410613885.png">
 
@@ -57,8 +65,8 @@ Connect the Oled Display on the connector on board ( OLED )
 
 
 # Use : 
-change nothing on the program, make only modification on data/config.json if needed or upload the 2 bin files ( code and spiffs )
-upload the program on the esp8266 and connect to the new wifi network ( password for OTA can be add on file data/config.json ) put information on your personal Wifi and reconnect. 
+change nothing on the program, make only modification on data/config.json if needed or upload the 2 bin files ( code and littlefs )
+upload the program on the esp8266 and connect to the new wifi network. you can send the code by OTA. 
 
 the pv routeur will send information on your Domoticz server. 
 
@@ -70,18 +78,19 @@ by default, send to domotic server is off ( for test ) you can activate it on th
 
 <img src="https://nsa40.casimages.com/img/2019/07/11/190711093838371624.png">
 
-# Domoticz regulation
+# Domoticz regulation if needed 
 Dimmer_heater.lua is configuration file for send to the dimmer. 
 Domoticz_pvrouter_script.lua is the main file for sending to the digital dimmer. 
 put them in domoticz/scripts/lua folder on your raspberry.
 configure the config.json file for activate domoticz mode ( "UseDomoticz":true )
 
-#autonome mode
-configure the config.json file for activate autonome mode ( "autonome":true ) and change the server IP
-the program will try to equilibrate power in the external numeric dimmer ( https://github.com/xlyric/Domoticz-control-with-esp8266-for-Robotdyn-AC-Light-dimmer-Module)
+#autonome mode 
+configure the config.json file for activate autonome mode ( "autonome":true ) and change the dimmer  IP
+the program will try to equilibrate power in the external numeric dimmer ( https://github.com/xlyric/PV-discharge-Dimmer-AC-Dimmer-KIT-Robotdyn )
 
 the full documentation is in the file Documentation.pdf ( in French ) 
 
+*** old ***
 bin files are added for easy installation. 
 python ~/esptool.py --port /dev/ttyUSB4 --baud 115200 write_flash 0x00000 file.bin
 and for SPIFFS python ~/esptool.py --port /dev/ttyUSB4 --baud 115200 write_flash 0x200000 file.bin
@@ -90,14 +99,15 @@ and for windows :
 esptool.py --port com3 --baud 256000 write_flash 0x00000 pvrouter.nodemcu.bin 
 
 esptool.py --port com3 --baud 256000 write_flash 0x00200000 spiffs.img 
+ 
 
-Wifiautoconnect password : pvrouter 
 
 OTA update 
 https://steve.fi/Hardware/ota-upload/
 https://github.com/esp8266/Arduino/blob/master/tools/espota.py
 python espota.py -d  -i 10.0.0.106 -f file.bin
 
+*** 
 
 Special commands
 
