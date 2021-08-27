@@ -63,6 +63,10 @@ and female connector to SCT013 on board
 
 Connect the Oled Display on the connector on board ( OLED ) 
 
+and put in on a box 
+
+<img src="http://forum.apper-solaire.org/download/file.php?id=12411">
+
 
 # Use : 
 change nothing on the program, make only modification on data/config.json if needed or upload the 2 bin files ( code and littlefs )
