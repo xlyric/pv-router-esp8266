@@ -76,7 +76,7 @@
 // Include custom images
 #include "images.h"
 
-const String VERSION = "Version 2.10.0" ;
+const String VERSION = "Version 2.10.1" ;
 String logs;
 
 //****  déclaration des fonctions ****// 
