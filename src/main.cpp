@@ -1314,7 +1314,7 @@ void mqtt(String idx, String value)
   if ( value != "0" ) { nvalue = "2" ; }
   String message = "  { \"idx\" : " + idx +" ,   \"svalue\" : \"" + value + "\",  \"nvalue\" : " + nvalue + "  } ";
   
-  String messagejdom = "  { \"value\" : \"" + value + "\" } ";
+  //String messagejdom = "  { \"value\" : \"" + value + "\" } ";
   String jdompub = String(config.Publish) + "/"+idx ;
   
   if (!client.connected()) {
@@ -1322,7 +1322,7 @@ void mqtt(String idx, String value)
   }
   client.loop();
   client.publish(config.Publish, String(message).c_str(), true);
-  client.publish(jdompub.c_str() , String(messagejdom).c_str(), true);
+  client.publish(jdompub.c_str() , value.c_str(), true);
 }
 
 
