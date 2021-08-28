@@ -1316,14 +1316,13 @@ void mqtt(String idx, String value)
   
   String messagejdom = "  { \"value\" : \"" + value + "\" } ";
   String jdompub = String(config.Publish) + "/"+idx ;
-  char jdompublish[100]; jdompub.toCharArray(jdompublish, 100);
-
+  
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
   client.publish(config.Publish, String(message).c_str(), true);
-  client.publish(jdompublish , String(messagejdom).c_str(), true);
+  client.publish(jdompub.c_str() , String(messagejdom).c_str(), true);
 }
 
 
